@@ -103,7 +103,7 @@ local function mine(blockData)
                 select(1)
             end
         end
-        if mined % 100 == 0 and mined~=0 then
+        if ((mined % 100 == 0 and mined < 1000) or mined % 1000 == 0) and mined~=0 then
             counter()
         end
         mined=mined+1

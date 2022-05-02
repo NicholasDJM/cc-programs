@@ -63,19 +63,22 @@ while not isEmpty do
 end
 turtle.select(1)
 local mined=0
-local fileExists = fs.exists("/cobble_count.txt")
-local file = nil
-if fileExists then
-    local file = fs.open("/cobble_count.txt", "r")
-    local data = file.readAll()
-    file.close()
-    if type(data) == "number" then
-        print("Getting latest count of blocks mined...")
-        mined = data
+do
+    local fileExists = fs.exists("/cobble_count.txt")
+    if fileExists then
+        local file = fs.open("/cobble_count.txt", "r")
+        local data = file.readAll()
+        file.close()
+        data = tonumber(data)
+        if type(data) == "number" then
+            print("Getting latest count of blocks mined...")
+            mined = data
+            print("Mined "..mined.."")
+        end
     end
 end
 local function saveMined(num)
-    file = fs.open("/cobble_count.txt", "w")
+    local file = fs.open("/cobble_count.txt", "w")
     file.write(num)
     file.close()
 end

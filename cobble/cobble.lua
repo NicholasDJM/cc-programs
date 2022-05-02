@@ -93,7 +93,7 @@ turtle.turnLeft()
 turtle.turnLeft()
 local error=false
 local function mine(blockData)
-    if blockData.name=="minecraft:cobblestone" then
+    if blockData.name=="minecraft:cobblestone" or blockData.name=="minecraft:stone" then
         local blockBroken, reason = turtle.dig()
         if reason=="No tool to dig with" then
             if not equip() then

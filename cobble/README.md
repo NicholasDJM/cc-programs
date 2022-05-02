@@ -5,5 +5,8 @@ Program can be placed in the startup folder, as the turtle can orientate itself 
 
 Will keep track of blocks mined as well.
 
-## Todo
-- Add an install script via Pastebin.
+## Installation
+To install, run this command in a Mining Turtle:
+```
+pastebin run hGPMde8g
+```

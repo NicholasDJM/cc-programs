@@ -1,5 +1,4 @@
 -- Cobblestone Generator script for Mining Turtles. Created by NicholasDJM (https://github.com/NicholasDJM/cc-programs)
--- TODO: Test for edge case: when chest is full, what should happen next?
 if not turtle then
     printError "Requires a Mining Turtle"
     return
@@ -18,9 +17,11 @@ local function equip()
     for i=1,16 do
         local item = turtle.getItemDetail(i)
         if item and pick(item.name) then
+            local originalSlot = turtle.getSelectedSlot()
             print("Found a pickaxe")
             turtle.select(i)
             turtle.equipRight()
+            turtle.select(originalSlot)
             return true
         end
     end
@@ -104,18 +105,28 @@ local function mine(blockData)
         saveMined(mined)
     end
 end
+local function waitUntilDrop()
+    local dropped=false
+    repeat
+        if turtle.drop() then
+            dropped=true
+        end
+        sleep(0.1)
+    until dropped
+end
 local function drop(dropFromCurrentOnly)
     local dropFromCurrentOnly = dropFromCurrentOnly or false
     turtle.turnLeft()
     turtle.turnLeft()
     if not dropFromCurrentOnly then
+        print("Inventory full, Emptying...")
         for i=1,16 do
             turtle.select(i)
-            turtle.drop()
+            waitUntilDrop()
         end
         turtle.select(1)
     else
-        turtle.drop()
+        waitUntilDrop()
     end
     turtle.turnRight()
     turtle.turnRight()

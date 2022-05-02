@@ -64,6 +64,11 @@ while not isEmpty do
 end
 turtle.select(1)
 local mined=0
+local function counter()
+    local s = "s"
+    if mined==1 then s = "" end
+    print("Mined "..mined.." block"..s..".")
+end
 do
     local fileExists = fs.exists("/cobble_count.txt")
     if fileExists then
@@ -74,7 +79,7 @@ do
         if type(data) == "number" then
             print("Getting latest count of blocks mined...")
             mined = data
-            print("Mined "..mined.."")
+            counter()
         end
     end
 end
@@ -99,7 +104,7 @@ local function mine(blockData)
             end
         end
         if mined % 100 == 0 and mined~=0 then
-            print("Mined "..mined.." blocks.")
+            counter()
         end
         mined=mined+1
         saveMined(mined)

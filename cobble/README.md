@@ -6,7 +6,13 @@ Program can be placed in the startup folder, as the turtle can orientate itself 
 Will keep track of blocks mined as well.
 
 ## Installation
-To install, run this command in a Mining Turtle:
+To install, run this command in a mining turtle:
 ```
 pastebin run hGPMde8g
+```
+
+## Startup
+To run this program as soon as the turtle starts up, run this command:
+```
+move cobble.lua startup/cobble.lua
 ```

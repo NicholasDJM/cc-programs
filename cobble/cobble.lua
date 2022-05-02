@@ -141,7 +141,7 @@ while not error do
     local block, blockData = turtle.inspect()
     if turtle.getItemSpace() > 0 then
         if turtle.getItemDetail()~=nil then
-            if turtle.getItemDetail().name == "minecraft:cobblestone" or turtle.getItemDetail().name == "minecraft:stone" then
+            if turtle.getItemDetail().name == "minecraft:cobblestone" then
                 mine(blockData)
             else
                 needNextSlot=true
